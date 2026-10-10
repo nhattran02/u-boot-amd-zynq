@@ -27,6 +27,7 @@ obj-$(CONFIG_ROCKCHIP_TIMER) += rockchip_timer.o
 obj-$(CONFIG_SANDBOX_TIMER)	+= sandbox_timer.o
 obj-$(CONFIG_SP804_TIMER)	+= sp804_timer.o
 obj-$(CONFIG_$(PHASE_)RISCV_ACLINT) += riscv_aclint_timer.o
+obj-$(CONFIG_AMD_XILINX_ZYNQ_TIMER)	+= amd_xilinx_zynq_timer.o
 obj-$(CONFIG_ARM_GLOBAL_TIMER)	+= arm_global_timer.o
 obj-$(CONFIG_STM32_TIMER)	+= stm32_timer.o
 obj-$(CONFIG_TEGRA_TIMER)	+= tegra-timer.o

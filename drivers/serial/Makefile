@@ -34,6 +34,7 @@ obj-$(CONFIG_XILINX_UARTLITE) += serial_xuartlite.o
 obj-$(CONFIG_SANDBOX_SERIAL) += sandbox.o
 obj-$(CONFIG_SCIF_CONSOLE) += serial_sh.o
 obj-$(CONFIG_SEMIHOSTING_SERIAL) += serial_semihosting.o
+obj-$(CONFIG_AMD_XILINX_ZYNQ_SERIAL) += serial_amd_xilinx_zynq.o
 obj-$(CONFIG_ZYNQ_SERIAL) += serial_zynq.o
 obj-$(CONFIG_FSL_LPUART) += serial_lpuart.o
 obj-$(CONFIG_ARC_SERIAL) += serial_arc.o

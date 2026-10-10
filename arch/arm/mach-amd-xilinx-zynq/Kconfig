@@ -1,0 +1,12 @@
+if ARCH_AMD_XILINX_ZYNQ
+
+config SYS_SOC
+	default "amd-xilinx-zynq"
+
+config SYS_BOARD
+	default "amd-zynq-soc"
+
+config SYS_CONFIG_NAME
+	default "amd-zynq-soc"
+
+endif

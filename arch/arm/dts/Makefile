@@ -200,6 +200,10 @@ dtb-$(CONFIG_ARCH_UNIPHIER_PXS3) += \
 dtb-$(CONFIG_ARCH_UNIPHIER_SLD8) += \
 	uniphier-sld8-ref.dtb
 
+dtb-$(CONFIG_ARCH_AMD_XILINX_ZYNQ) += \
+	amd-zynq-soc-zc702.dtb \
+	amd-zynq-soc-zc702-qemu.dtb
+
 dtb-$(CONFIG_ARCH_ZYNQ) += \
 	bitmain-antminer-s9.dtb \
 	zynq-cc108.dtb \

@@ -813,6 +813,14 @@ config TEGRA124_MMC_DISABLE_EXT_LOOPBACK
 	  TODO(marcel.ziswiler@toradex.com): Move to device tree controlled
 	  approach once proper kernel integration made it mainline.
 
+config MMC_SDHCI_AMD_XILINX_ZYNQ
+	bool "AMD Xilinx Zynq-7000 SDHCI controller support"
+	depends on DM_MMC && OF_CONTROL && CLK
+	depends on MMC_SDHCI
+	help
+	  Support for the Arasan SD 2.0 host controller of the AMD Xilinx
+	  Zynq-7000.
+
 config MMC_SDHCI_ZYNQ
 	bool "Arasan SDHCI controller support"
 	depends on OF_CONTROL

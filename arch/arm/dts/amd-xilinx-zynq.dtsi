@@ -1,0 +1,166 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * AMD Xilinx Zynq-7000 SoC
+ *
+ * Address map: UG585 chapter 4. Compatible strings and clock indices follow
+ * the Linux bindings so the same tree can be handed to the kernel.
+ */
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/ {
+	compatible = "amd,xilinx-zynq", "xlnx,zynq-7000";
+	#address-cells = <1>;
+	#size-cells = <1>;
+	interrupt-parent = <&intc>;
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <0>;
+			clocks = <&clkc 3>;
+		};
+
+		cpu1: cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <1>;
+			clocks = <&clkc 3>;
+		};
+	};
+
+	soc: soc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		bootph-all;
+
+		uart0: serial@e0000000 {
+			compatible = "xlnx,xuartps", "cdns,uart-r1p8";
+			reg = <0xe0000000 0x1000>;
+			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 23>, <&clkc 40>;
+			clock-names = "uart_clk", "pclk";
+			status = "disabled";
+		};
+
+		uart1: serial@e0001000 {
+			compatible = "xlnx,xuartps", "cdns,uart-r1p8";
+			reg = <0xe0001000 0x1000>;
+			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 24>, <&clkc 41>;
+			clock-names = "uart_clk", "pclk";
+			status = "disabled";
+		};
+
+		gpio0: gpio@e000a000 {
+			compatible = "xlnx,zynq-gpio-1.0";
+			reg = <0xe000a000 0x1000>;
+			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 42>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			status = "disabled";
+		};
+
+		gem0: ethernet@e000b000 {
+			compatible = "xlnx,zynq-gem", "cdns,gem";
+			reg = <0xe000b000 0x1000>;
+			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 30>, <&clkc 30>, <&clkc 13>;
+			clock-names = "pclk", "hclk", "tx_clk";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		gem1: ethernet@e000c000 {
+			compatible = "xlnx,zynq-gem", "cdns,gem";
+			reg = <0xe000c000 0x1000>;
+			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 31>, <&clkc 31>, <&clkc 14>;
+			clock-names = "pclk", "hclk", "tx_clk";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		sdhci0: mmc@e0100000 {
+			compatible = "arasan,sdhci-8.9a";
+			reg = <0xe0100000 0x1000>;
+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 21>, <&clkc 32>;
+			clock-names = "clk_xin", "clk_ahb";
+			status = "disabled";
+		};
+
+		sdhci1: mmc@e0101000 {
+			compatible = "arasan,sdhci-8.9a";
+			reg = <0xe0101000 0x1000>;
+			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 22>, <&clkc 33>;
+			clock-names = "clk_xin", "clk_ahb";
+			status = "disabled";
+		};
+
+		slcr: slcr@f8000000 {
+			compatible = "xlnx,zynq-slcr", "syscon", "simple-mfd";
+			reg = <0xf8000000 0x1000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+			bootph-all;
+
+			clkc: clkc@100 {
+				compatible = "xlnx,ps7-clkc";
+				reg = <0x100 0x100>;
+				#clock-cells = <1>;
+				fclk-enable = <0>;
+				clock-output-names = "armpll", "ddrpll", "iopll",
+					"cpu_6or4x", "cpu_3or2x", "cpu_2x", "cpu_1x",
+					"ddr2x", "ddr3x", "dci", "lqspi", "smc", "pcap",
+					"gem0", "gem1", "fclk0", "fclk1", "fclk2",
+					"fclk3", "can0", "can1", "sdio0", "sdio1",
+					"uart0", "uart1", "spi0", "spi1", "dma",
+					"usb0_aper", "usb1_aper", "gem0_aper",
+					"gem1_aper", "sdio0_aper", "sdio1_aper",
+					"spi0_aper", "spi1_aper", "can0_aper",
+					"can1_aper", "i2c0_aper", "i2c1_aper",
+					"uart0_aper", "uart1_aper", "gpio_aper",
+					"lqspi_aper", "smc_aper", "swdt", "dbg_trc",
+					"dbg_apb";
+				bootph-all;
+			};
+		};
+
+		scutimer: timer@f8f00600 {
+			compatible = "arm,cortex-a9-twd-timer";
+			reg = <0xf8f00600 0x20>;
+			interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+			clocks = <&clkc 4>;
+		};
+
+		global_timer: timer@f8f00200 {
+			compatible = "arm,cortex-a9-global-timer";
+			reg = <0xf8f00200 0x20>;
+			interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+			clocks = <&clkc 4>;
+			bootph-all;
+		};
+
+		intc: interrupt-controller@f8f01000 {
+			compatible = "arm,cortex-a9-gic";
+			reg = <0xf8f01000 0x1000>,
+			      <0xf8f00100 0x100>;
+			#interrupt-cells = <3>;
+			interrupt-controller;
+		};
+	};
+};

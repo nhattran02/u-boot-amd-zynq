@@ -95,6 +95,7 @@ machine-$(CONFIG_ARCH_UNIPHIER)		+= uniphier
 machine-$(CONFIG_ARCH_VERSAL)		+= versal
 machine-$(CONFIG_ARCH_VERSAL2)		+= versal2
 machine-$(CONFIG_ARCH_VERSAL_NET)	+= versal-net
+machine-$(CONFIG_ARCH_AMD_XILINX_ZYNQ)	+= amd-xilinx-zynq
 machine-$(CONFIG_ARCH_ZYNQ)		+= zynq
 machine-$(CONFIG_ARCH_ZYNQMP)		+= zynqmp
 machine-$(CONFIG_ARCH_ZYNQMP_R5)	+= zynqmp-r5

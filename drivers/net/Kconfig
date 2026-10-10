@@ -839,6 +839,15 @@ config XILINX_EMACLITE
 	help
 	  This MAC is present in Xilinx Microblaze, Zynq and ZynqMP SoCs.
 
+config AMD_XILINX_ZYNQ_GEM
+	bool "AMD Xilinx Zynq-7000 Gigabit Ethernet MAC"
+	depends on DM_ETH && ARCH_AMD_XILINX_ZYNQ
+	select PHYLIB
+	select SYS_HAS_NONCACHED_MEMORY
+	help
+	  Driver for the Cadence GEM Ethernet controller of the AMD Xilinx
+	  Zynq-7000.
+
 config ZYNQ_GEM
 	select PHYLIB
 	bool "Xilinx Ethernet GEM"

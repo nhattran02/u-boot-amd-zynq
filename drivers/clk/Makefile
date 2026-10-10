@@ -56,6 +56,7 @@ obj-$(CONFIG_CLK_VERSACLOCK) += clk_versaclock.o
 obj-$(CONFIG_CLK_VERSAL) += clk_versal.o
 obj-$(CONFIG_CLK_VEXPRESS_OSC) += clk_vexpress_osc.o
 obj-$(CONFIG_CLK_XLNX_CLKWZRD) += clk-xlnx-clock-wizard.o
+obj-$(CONFIG_CLK_AMD_XILINX_ZYNQ) += clk_amd_xilinx_zynq.o
 obj-$(CONFIG_CLK_ZYNQ) += clk_zynq.o
 obj-$(CONFIG_CLK_ZYNQMP) += clk_zynqmp.o
 obj-$(CONFIG_CLK_ICS8N3QV01) += ics8n3qv01.o

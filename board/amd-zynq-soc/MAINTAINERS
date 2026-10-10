@@ -1,0 +1,18 @@
+AMD ZYNQ SOC BOARD
+M:	Nhat Tran <tranminhnhat20022002@gmail.com>
+S:	Maintained
+F:	arch/arm/dts/amd-xilinx-zynq.dtsi
+F:	arch/arm/dts/amd-zynq-soc-zc702.dts
+F:	arch/arm/dts/amd-zynq-soc-zc702-qemu.dts
+F:	arch/arm/mach-amd-xilinx-zynq/
+F:	board/amd-zynq-soc/
+F:	configs/amd_zynq_soc_defconfig
+F:	doc/board/amd/
+F:	drivers/clk/clk_amd_xilinx_zynq.c
+F:	drivers/gpio/amd_xilinx_zynq_gpio.c
+F:	drivers/mmc/amd_xilinx_zynq_sdhci.c
+F:	drivers/net/amd_xilinx_zynq_gem.c
+F:	drivers/serial/serial_amd_xilinx_zynq.c
+F:	drivers/sysreset/sysreset_amd_xilinx_zynq.c
+F:	drivers/timer/amd_xilinx_zynq_timer.c
+F:	include/configs/amd-zynq-soc.h

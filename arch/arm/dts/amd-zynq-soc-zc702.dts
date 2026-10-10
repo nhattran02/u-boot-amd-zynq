@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * AMD Zynq-7000 ZC702 evaluation board
+ *
+ * Board description: UG850
+ */
+
+/dts-v1/;
+
+#include "amd-xilinx-zynq.dtsi"
+
+/ {
+	model = "AMD Zynq-7000 ZC702 (amd-zynq-soc)";
+	compatible = "amd,zynq-soc-zc702", "xlnx,zynq-zc702",
+		     "amd,xilinx-zynq", "xlnx,zynq-7000";
+
+	aliases {
+		ethernet0 = &gem0;
+		gpio0 = &gpio0;
+		mmc0 = &sdhci0;
+		serial0 = &uart1;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x40000000>;		/* 1 GiB DDR3 */
+	};
+};
+
+&clkc {
+	ps-clk-frequency = <33333333>;
+};
+
+/* Marvell 88E1116R, RGMII with internal delays */
+&gem0 {
+	phy-mode = "rgmii-id";
+	phy-handle = <&ethernet_phy>;
+	status = "okay";
+
+	ethernet_phy: ethernet-phy@7 {
+		reg = <7>;
+	};
+};
+
+/* DS23 user LED on MIO 10, SW13/SW14 push buttons on MIO 12/14 */
+&gpio0 {
+	status = "okay";
+};
+
+/* SD card slot J64 */
+&sdhci0 {
+	no-1-8-v;
+	status = "okay";
+};
+
+/* USB-UART bridge (CP2103) */
+&uart1 {
+	status = "okay";
+	bootph-all;
+};

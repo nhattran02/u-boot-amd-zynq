@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * ZC702 as emulated by "qemu-system-arm -M xilinx-zynq-a9"
+ */
+
+#include "amd-zynq-soc-zc702.dts"
+
+/ {
+	model = "AMD Zynq-7000 ZC702 (amd-zynq-soc, QEMU)";
+};
+
+/* QEMU's a9gtimer ticks every 10 ns regardless of the CPU clock */
+&global_timer {
+	/delete-property/ clocks;
+	clock-frequency = <100000000>;
+};
+
+/* QEMU emulates its PHY at a different MDIO address: scan the bus */
+&gem0 {
+	/delete-property/ phy-handle;
+};
+
+/* Not emulated by QEMU: any access would raise an external abort */
+&gpio0 {
+	status = "disabled";
+};

@@ -12,6 +12,7 @@ Board-specific doc
    andestech/index
    alliedtelesis/index
    allwinner/index
+   amd/index
    amlogic/index
    anbernic/index
    apple/index
