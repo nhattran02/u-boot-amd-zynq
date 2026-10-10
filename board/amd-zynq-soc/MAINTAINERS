@@ -6,6 +6,7 @@ F:	arch/arm/dts/amd-zynq-soc-zc702.dts
 F:	arch/arm/mach-amd-xilinx-zynq/
 F:	board/amd-zynq-soc/
 F:	configs/amd_zynq_soc_defconfig
+F:	drivers/clk/clk_amd_xilinx_zynq.c
 F:	drivers/serial/serial_amd_xilinx_zynq.c
 F:	drivers/sysreset/sysreset_amd_xilinx_zynq.c
 F:	drivers/timer/amd_xilinx_zynq_timer.c

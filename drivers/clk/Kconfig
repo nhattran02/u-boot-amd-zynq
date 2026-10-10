@@ -250,6 +250,14 @@ config CLK_XLNX_CLKWZRD
 	  set_duty_cycle API, this driver only supports set_rate to modify
 	  the frequency.
 
+config CLK_AMD_XILINX_ZYNQ
+	bool "Enable AMD Xilinx Zynq-7000 clock driver"
+	depends on CLK && ARCH_AMD_XILINX_ZYNQ
+	help
+	  Clock controller driver for the AMD Xilinx Zynq-7000. Rates are read
+	  back from the PLL and divider settings in the SLCR, and peripheral
+	  clocks can be gated and re-programmed.
+
 config CLK_ZYNQ
 	bool "Enable clock driver support for Zynq"
 	depends on CLK && ARCH_ZYNQ
