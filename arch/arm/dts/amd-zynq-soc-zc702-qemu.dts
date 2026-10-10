@@ -11,5 +11,6 @@
 
 /* QEMU's a9gtimer ticks every 10 ns regardless of the CPU clock */
 &global_timer {
+	/delete-property/ clocks;
 	clock-frequency = <100000000>;
 };

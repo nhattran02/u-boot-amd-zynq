@@ -11,7 +11,8 @@
 
 / {
 	model = "AMD Zynq-7000 ZC702 (amd-zynq-soc)";
-	compatible = "amd,zynq-soc-zc702", "amd,xilinx-zynq";
+	compatible = "amd,zynq-soc-zc702", "xlnx,zynq-zc702",
+		     "amd,xilinx-zynq", "xlnx,zynq-7000";
 
 	aliases {
 		serial0 = &uart1;
@@ -27,14 +28,12 @@
 	};
 };
 
-/* CPU_6x4x = 666.666 MHz in 6:2:1 mode, global timer runs on CPU_3x2x */
-&global_timer {
-	clock-frequency = <333333333>;
+&clkc {
+	ps-clk-frequency = <33333333>;
 };
 
-/* USB-UART bridge, UART_REF_CLK = IO PLL (1000 MHz) / 20 */
+/* USB-UART bridge (CP2103) */
 &uart1 {
-	clock-frequency = <50000000>;
 	status = "okay";
 	bootph-all;
 };
