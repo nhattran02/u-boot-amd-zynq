@@ -58,6 +58,24 @@
 			status = "disabled";
 		};
 
+		sdhci0: mmc@e0100000 {
+			compatible = "arasan,sdhci-8.9a";
+			reg = <0xe0100000 0x1000>;
+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 21>, <&clkc 32>;
+			clock-names = "clk_xin", "clk_ahb";
+			status = "disabled";
+		};
+
+		sdhci1: mmc@e0101000 {
+			compatible = "arasan,sdhci-8.9a";
+			reg = <0xe0101000 0x1000>;
+			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 22>, <&clkc 33>;
+			clock-names = "clk_xin", "clk_ahb";
+			status = "disabled";
+		};
+
 		slcr: slcr@f8000000 {
 			compatible = "xlnx,zynq-slcr", "syscon", "simple-mfd";
 			reg = <0xf8000000 0x1000>;
