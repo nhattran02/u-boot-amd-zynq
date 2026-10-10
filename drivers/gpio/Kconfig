@@ -543,6 +543,13 @@ config MVEBU_GPIO
 	help
 	  Say yes here to support Marvell MVEBU (Armada XP/38x) GPIOs.
 
+config AMD_XILINX_ZYNQ_GPIO
+	bool "AMD Xilinx Zynq-7000 GPIO driver"
+	depends on DM_GPIO
+	help
+	  Driver for the GPIO controller of the AMD Xilinx Zynq-7000: 54 MIO
+	  pins and 64 EMIO pins.
+
 config ZYNQ_GPIO
 	bool "Zynq GPIO driver"
 	depends on DM_GPIO

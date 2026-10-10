@@ -9,8 +9,12 @@ F:	configs/amd_zynq_soc_defconfig
 F:	drivers/clk/clk_amd_xilinx_zynq.c
 F:	drivers/clk/clk_amd_xilinx_zynq.c
 F:	drivers/clk/clk_amd_xilinx_zynq.c
+F:	drivers/clk/clk_amd_xilinx_zynq.c
+F:	drivers/gpio/amd_xilinx_zynq_gpio.c
 F:	drivers/mmc/amd_xilinx_zynq_sdhci.c
 F:	drivers/mmc/amd_xilinx_zynq_sdhci.c
+F:	drivers/mmc/amd_xilinx_zynq_sdhci.c
+F:	drivers/net/amd_xilinx_zynq_gem.c
 F:	drivers/net/amd_xilinx_zynq_gem.c
 F:	drivers/serial/serial_amd_xilinx_zynq.c
 F:	drivers/sysreset/sysreset_amd_xilinx_zynq.c
