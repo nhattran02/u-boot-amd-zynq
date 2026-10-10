@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * ZC702 as emulated by "qemu-system-arm -M xilinx-zynq-a9"
+ */
+
+#include "amd-zynq-soc-zc702.dts"
+
+/ {
+	model = "AMD Zynq-7000 ZC702 (amd-zynq-soc, QEMU)";
+};
+
+/* QEMU's a9gtimer ticks every 10 ns regardless of the CPU clock */
+&global_timer {
+	clock-frequency = <100000000>;
+};

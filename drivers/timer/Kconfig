@@ -244,6 +244,13 @@ config SANDBOX_TIMER
 	  Select this to enable an emulated timer for sandbox. It gets
 	  time from host os.
 
+config AMD_XILINX_ZYNQ_TIMER
+	bool "AMD Xilinx Zynq-7000 Cortex-A9 global timer support"
+	depends on TIMER && ARM
+	help
+	  Driver model timer driver for the Cortex-A9 MPCore global timer
+	  found in the AMD Xilinx Zynq-7000 SoC.
+
 config ARM_GLOBAL_TIMER
 	bool "ARM Cortex A9 global timer support"
 	depends on TIMER

@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * AMD Zynq-7000 ZC702 evaluation board
+ *
+ * Board description: UG850
+ */
+
+/dts-v1/;
+
+#include "amd-xilinx-zynq.dtsi"
+
+/ {
+	model = "AMD Zynq-7000 ZC702 (amd-zynq-soc)";
+	compatible = "amd,zynq-soc-zc702", "amd,xilinx-zynq";
+
+	aliases {
+		serial0 = &uart1;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x40000000>;		/* 1 GiB DDR3 */
+	};
+};
+
+/* CPU_6x4x = 666.666 MHz in 6:2:1 mode, global timer runs on CPU_3x2x */
+&global_timer {
+	clock-frequency = <333333333>;
+};
+
+/* USB-UART bridge, UART_REF_CLK = IO PLL (1000 MHz) / 20 */
+&uart1 {
+	clock-frequency = <50000000>;
+	status = "okay";
+	bootph-all;
+};

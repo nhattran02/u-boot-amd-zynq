@@ -173,6 +173,13 @@ config SYSRESET_PALMAS
 	help
 	  Enable system power management functions found in PLAMAS PMIC family.
 
+config SYSRESET_AMD_XILINX_ZYNQ
+	bool "Enable support for AMD Xilinx Zynq-7000 system reset"
+	depends on ARCH_AMD_XILINX_ZYNQ
+	help
+	  Reset the whole SoC through the PSS_RST_CTRL register of the
+	  System Level Control Registers (SLCR).
+
 config SYSRESET_PSCI
 	bool "Enable support for PSCI System Reset"
 	depends on ARM_PSCI_FW

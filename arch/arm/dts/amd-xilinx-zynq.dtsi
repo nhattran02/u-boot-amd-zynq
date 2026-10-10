@@ -1,0 +1,74 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * AMD Xilinx Zynq-7000 SoC
+ *
+ * Address map: UG585 chapter 4
+ */
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/ {
+	compatible = "amd,xilinx-zynq";
+	#address-cells = <1>;
+	#size-cells = <1>;
+	interrupt-parent = <&intc>;
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <0>;
+		};
+
+		cpu1: cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <1>;
+		};
+	};
+
+	soc: soc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		bootph-all;
+
+		slcr: slcr@f8000000 {
+			compatible = "xlnx,zynq-slcr";
+			reg = <0xf8000000 0x1000>;
+		};
+
+		global_timer: timer@f8f00200 {
+			compatible = "arm,cortex-a9-global-timer";
+			reg = <0xf8f00200 0x20>;
+			interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+			bootph-all;
+		};
+
+		intc: interrupt-controller@f8f01000 {
+			compatible = "arm,cortex-a9-gic";
+			#interrupt-cells = <3>;
+			interrupt-controller;
+			reg = <0xf8f01000 0x1000>,
+			      <0xf8f00100 0x100>;
+		};
+
+		uart0: serial@e0000000 {
+			compatible = "cdns,uart-r1p8";
+			reg = <0xe0000000 0x1000>;
+			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+		};
+
+		uart1: serial@e0001000 {
+			compatible = "cdns,uart-r1p8";
+			reg = <0xe0001000 0x1000>;
+			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+		};
+	};
+};

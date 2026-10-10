@@ -371,6 +371,14 @@ config DEBUG_MVEBU_A3700_UART
 	  will need to provide parameters to make this work. The driver will
 	  be available until the real driver-model serial is running.
 
+config DEBUG_UART_AMD_XILINX_ZYNQ
+	bool "AMD Xilinx Zynq-7000 Cadence UART"
+	depends on AMD_XILINX_ZYNQ_SERIAL
+	help
+	  Select this to enable a debug UART using the serial_amd_xilinx_zynq
+	  driver. Set DEBUG_UART_BASE and DEBUG_UART_CLOCK to match the UART
+	  used as console.
+
 config DEBUG_UART_ZYNQ
 	bool "Xilinx Zynq"
 	depends on ZYNQ_SERIAL
@@ -1090,6 +1098,13 @@ config STM32_SERIAL
 	  If you have a machine based on a STM32 F4, F7, H7 or MP1 SOC
 	  you can enable its onboard serial ports, say Y to this option.
 	  If unsure, say N.
+
+config AMD_XILINX_ZYNQ_SERIAL
+	bool "AMD Xilinx Zynq-7000 Cadence UART support"
+	depends on DM_SERIAL
+	help
+	  Driver model serial driver for the Cadence UART found in the
+	  AMD Xilinx Zynq-7000 SoC.
 
 config ZYNQ_SERIAL
 	bool "Cadence (Xilinx Zynq) UART support"

@@ -1328,6 +1328,19 @@ config ARCH_VF610
 	imply CMD_MTDPARTS
 	imply MTD_RAW_NAND
 
+config ARCH_AMD_XILINX_ZYNQ
+	bool "AMD Xilinx Zynq-7000 (from-scratch port)"
+	select CPU_V7A
+	select DM
+	select DM_SERIAL
+	select OF_CONTROL
+	select TIMER
+	imply AMD_XILINX_ZYNQ_SERIAL
+	imply AMD_XILINX_ZYNQ_TIMER
+	imply CMD_DM
+	imply SYSRESET
+	imply SYSRESET_AMD_XILINX_ZYNQ
+
 config ARCH_ZYNQ
 	bool "Xilinx Zynq based platform"
 	select ARM_TWD_TIMER
@@ -2391,6 +2404,8 @@ source "arch/arm/mach-u8500/Kconfig"
 source "arch/arm/mach-uniphier/Kconfig"
 
 source "arch/arm/cpu/armv7/vf610/Kconfig"
+
+source "arch/arm/mach-amd-xilinx-zynq/Kconfig"
 
 source "arch/arm/mach-zynq/Kconfig"
 
