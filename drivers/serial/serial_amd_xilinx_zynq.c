@@ -5,6 +5,7 @@
  * Register description: UG585, chapter 19 and appendix B.33
  */
 
+#include <clk.h>
 #include <debug_uart.h>
 #include <dm.h>
 #include <errno.h>
@@ -126,6 +127,36 @@ static int amd_zynq_uart_pending(struct udevice *dev, bool input)
 	return !(sr & UART_SR_TXEMPTY);
 }
 
+static int amd_zynq_uart_probe(struct udevice *dev)
+{
+	struct amd_zynq_uart_plat *plat = dev_get_plat(dev);
+	struct clk clk;
+	ulong rate;
+	int ret;
+
+	ret = clk_get_by_name(dev, "pclk", &clk);
+	if (!ret)
+		clk_enable(&clk);
+
+	ret = clk_get_by_name(dev, "uart_clk", &clk);
+	if (ret) {
+		/* Board without a clock controller: rate given directly */
+		plat->clock = dev_read_u32_default(dev, "clock-frequency", 0);
+		return 0;
+	}
+
+	ret = clk_enable(&clk);
+	if (ret)
+		return ret;
+
+	rate = clk_get_rate(&clk);
+	if (IS_ERR_VALUE(rate) || !rate)
+		return -EINVAL;
+	plat->clock = rate;
+
+	return 0;
+}
+
 static int amd_zynq_uart_of_to_plat(struct udevice *dev)
 {
 	struct amd_zynq_uart_plat *plat = dev_get_plat(dev);
@@ -133,9 +164,6 @@ static int amd_zynq_uart_of_to_plat(struct udevice *dev)
 	plat->base = dev_read_addr_ptr(dev);
 	if (!plat->base)
 		return -EINVAL;
-
-	/* No clock driver yet: the reference clock comes straight from DT */
-	plat->clock = dev_read_u32_default(dev, "clock-frequency", 0);
 
 	return 0;
 }
@@ -157,6 +185,7 @@ U_BOOT_DRIVER(amd_zynq_uart) = {
 	.id = UCLASS_SERIAL,
 	.of_match = amd_zynq_uart_ids,
 	.of_to_plat = amd_zynq_uart_of_to_plat,
+	.probe = amd_zynq_uart_probe,
 	.plat_auto = sizeof(struct amd_zynq_uart_plat),
 	.ops = &amd_zynq_uart_ops,
 };
