@@ -15,6 +15,7 @@
 		     "amd,xilinx-zynq", "xlnx,zynq-7000";
 
 	aliases {
+		ethernet0 = &gem0;
 		mmc0 = &sdhci0;
 		serial0 = &uart1;
 	};
@@ -31,6 +32,17 @@
 
 &clkc {
 	ps-clk-frequency = <33333333>;
+};
+
+/* Marvell 88E1116R, RGMII with internal delays */
+&gem0 {
+	phy-mode = "rgmii-id";
+	phy-handle = <&ethernet_phy>;
+	status = "okay";
+
+	ethernet_phy: ethernet-phy@7 {
+		reg = <7>;
+	};
 };
 
 /* SD card slot J64 */

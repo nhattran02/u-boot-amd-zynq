@@ -14,3 +14,8 @@
 	/delete-property/ clocks;
 	clock-frequency = <100000000>;
 };
+
+/* QEMU emulates its PHY at a different MDIO address: scan the bus */
+&gem0 {
+	/delete-property/ phy-handle;
+};

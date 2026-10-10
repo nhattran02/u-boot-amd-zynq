@@ -58,6 +58,28 @@
 			status = "disabled";
 		};
 
+		gem0: ethernet@e000b000 {
+			compatible = "xlnx,zynq-gem", "cdns,gem";
+			reg = <0xe000b000 0x1000>;
+			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 30>, <&clkc 30>, <&clkc 13>;
+			clock-names = "pclk", "hclk", "tx_clk";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		gem1: ethernet@e000c000 {
+			compatible = "xlnx,zynq-gem", "cdns,gem";
+			reg = <0xe000c000 0x1000>;
+			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 31>, <&clkc 31>, <&clkc 14>;
+			clock-names = "pclk", "hclk", "tx_clk";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
 		sdhci0: mmc@e0100000 {
 			compatible = "arasan,sdhci-8.9a";
 			reg = <0xe0100000 0x1000>;
