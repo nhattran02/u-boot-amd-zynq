@@ -64,6 +64,8 @@ U_BOOT_DRIVER(amd_zynq_sysreset) = {
 	.name = "amd_zynq_sysreset",
 	.id = UCLASS_SYSRESET,
 	.of_match = amd_zynq_sysreset_ids,
+	/* The SLCR also hosts the clock controller (clkc@100) */
+	.bind = dm_scan_fdt_dev,
 	.probe = amd_zynq_sysreset_probe,
 	.priv_auto = sizeof(struct amd_zynq_sysreset_priv),
 	.ops = &amd_zynq_sysreset_ops,
