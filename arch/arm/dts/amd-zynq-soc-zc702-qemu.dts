@@ -19,3 +19,8 @@
 &gem0 {
 	/delete-property/ phy-handle;
 };
+
+/* Not emulated by QEMU: any access would raise an external abort */
+&gpio0 {
+	status = "disabled";
+};

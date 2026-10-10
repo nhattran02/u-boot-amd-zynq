@@ -58,6 +58,18 @@
 			status = "disabled";
 		};
 
+		gpio0: gpio@e000a000 {
+			compatible = "xlnx,zynq-gpio-1.0";
+			reg = <0xe000a000 0x1000>;
+			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkc 42>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			status = "disabled";
+		};
+
 		gem0: ethernet@e000b000 {
 			compatible = "xlnx,zynq-gem", "cdns,gem";
 			reg = <0xe000b000 0x1000>;

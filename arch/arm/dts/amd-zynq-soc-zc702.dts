@@ -16,6 +16,7 @@
 
 	aliases {
 		ethernet0 = &gem0;
+		gpio0 = &gpio0;
 		mmc0 = &sdhci0;
 		serial0 = &uart1;
 	};
@@ -43,6 +44,11 @@
 	ethernet_phy: ethernet-phy@7 {
 		reg = <7>;
 	};
+};
+
+/* DS23 user LED on MIO 10, SW13/SW14 push buttons on MIO 12/14 */
+&gpio0 {
+	status = "okay";
 };
 
 /* SD card slot J64 */
